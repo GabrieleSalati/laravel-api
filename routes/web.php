@@ -23,6 +23,7 @@ Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth']
 
 Route::middleware('auth')
     ->prefix('/admin')
+    ->name('admin.')
     ->group(function () {
         route::resource('projects', ProjectController::class);
     });
