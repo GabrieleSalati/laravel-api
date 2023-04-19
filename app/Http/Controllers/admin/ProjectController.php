@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -24,9 +25,10 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        return view('admin.projects.create');
+        $project = new Project;
+        return view('admin.projects.create', compact('project'));
     }
 
     /**
@@ -37,7 +39,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project;
+        $project->fill($request->all());
+        $project->slug = Str::of($project->title)->slug('-');
+
+        $project->save();
+
+        return to_route('admin.projects.show', $project);
     }
 
     /**
@@ -48,6 +56,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $project = new Project;
         return view('admin.projects.show', compact('project'));
     }
 
