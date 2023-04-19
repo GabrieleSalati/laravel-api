@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\Admin\ProjectController;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(function () {
-        route::resource('projects', ProjectController::class);
+        route::resource('projects', ProjectController::class)
+            ->parameters(['projects' => 'project:slug']);
     });
 
 Route::middleware('auth')->group(function () {
