@@ -19,6 +19,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
+    {{-- Stylesheet --}}
+
+    <link rel="stylesheet" href="resources/scss/back.scss">
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -31,6 +35,7 @@
         <main class="">
             <div class="container">
                 <h1>@yield('title')</h1>
+                @yield('actions')
                 @yield('content')
             </div>
         </main>
