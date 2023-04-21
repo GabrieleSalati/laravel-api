@@ -27,7 +27,10 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->image }}</td>
-                    <td><a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a></td>
+                    <td>
+                        <a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a>
+                        <a href="{{ route('admin.projects.edit', $project) }}"><i class="bi bi-pencil"></i></a>
+                    </td>
                 </tr>
         </tbody>
         @endforeach
