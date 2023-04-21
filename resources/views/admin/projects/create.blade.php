@@ -6,7 +6,7 @@
 
 @section('content')
     <div>
-        <form action="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
