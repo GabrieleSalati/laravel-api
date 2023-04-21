@@ -59,7 +59,7 @@
                         <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <button type="submit" class="btn btn-danger">Confirm</button>
                         </form>
                     </div>
                 </div>
