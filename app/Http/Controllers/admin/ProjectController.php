@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return to_route('admin.projects.show', $project);
+        return to_route('admin.projects.show', $project)->with('message', 'Project added!');
     }
 
     /**
@@ -84,7 +84,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return to_route('admin.projects.show', $project);
+        return to_route('admin.projects.show', $project)->with('message', 'Project updated!');
     }
 
     /**
@@ -96,6 +96,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('message', 'Project deleted!');
     }
 }

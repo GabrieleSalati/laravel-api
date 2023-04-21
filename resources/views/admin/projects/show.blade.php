@@ -3,8 +3,12 @@
 @section('title', $project->title)
 
 @section('content')
-    <img src="{{ $project->image }}" alt="Picture">
-    <p>{{ $project->description }}</p>
-    <a href="{{ $project->link }}">{{ $project->link }}</a>
-    <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Back to Projects</a>
+
+    <div>
+        <img src="{{ $project->image }}" alt="Picture">
+        <p>{{ $project->description }}</p>
+        <a href="{{ $project->link }}">{{ $project->link }}</a>
+        <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Back to Projects</a>
+    </div>
+
 @endsection
