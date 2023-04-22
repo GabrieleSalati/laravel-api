@@ -29,7 +29,6 @@
                     @foreach ($technologies as $technology)
                         <option value="{{ $technology->id }}">{{ $technology->label }}</option>
                     @endforeach
-                    <option value="1">HTML 5</option>
                 </select>
             </div>
             <div class="mb-3">
