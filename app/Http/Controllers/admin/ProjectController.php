@@ -70,6 +70,7 @@ class ProjectController extends Controller
         $project = new Project;
         $project->fill($data);
         $project->slug = Str::of($project->title)->slug('-');
+
         $project->save();
 
         return to_route('admin.projects.show', $project)->with('message', 'Project added!');
