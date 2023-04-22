@@ -5,7 +5,7 @@
 @section('content')
 
     <div>
-        <img src="{{ $project->image }}" alt="Picture">
+        <img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="400px">
         <p>{{ $project->description }}</p>
         <a href="{{ $project->link }}">{{ $project->link }}</a>
         <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Back to Projects</a>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -44,7 +45,7 @@ class ProjectController extends Controller
             [
                 'title' => 'required|string',
                 'description' => 'required|string',
-                'image' => 'nullable|url',
+                'image' => 'nullable|image|:jpg,png,jpeg',
                 'link' => 'required|url'
             ],
             [
@@ -52,17 +53,23 @@ class ProjectController extends Controller
                 'title.string' => 'Title must be a string!',
                 'description.rquired' => 'Description is mandatory!',
                 'description.string' => 'Description must be a string!',
-                'image.url' => 'Insert a valid Url!',
+                'image.image' => 'Insert a valid image!',
+                'image.mimes' => 'Accepted extensions are jpg,png,jpeg!',
                 'link.required' => 'Link is mandatory!',
                 'link.url' => 'Insert a valid Url!'
             ]
         );
 
+        $data = $request->all();
+
+        if (array_key_exists('image', $data)) {
+            $path = Storage::put('uploads/projects', $data['image']);
+            $data['image'] = $path;
+        }
 
         $project = new Project;
-        $project->fill($request->all());
+        $project->fill($data);
         $project->slug = Str::of($project->title)->slug('-');
-
         $project->save();
 
         return to_route('admin.projects.show', $project)->with('message', 'Project added!');

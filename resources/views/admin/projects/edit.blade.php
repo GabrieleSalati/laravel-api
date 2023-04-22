@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
-                    name="description" value="{{ $project->description }}" rows="3"></textarea>
+                    name="description" rows="3">{{ $project->description }}</textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -44,7 +44,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Choose image</label>
-                <input class="form-control" type="file" id="image" name="image" value="{{ $project->image }}">
+                <input class="form-control" type="file" id="image" name="image">
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Edit" />
