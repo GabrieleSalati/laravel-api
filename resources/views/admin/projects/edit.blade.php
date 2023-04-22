@@ -23,6 +23,16 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="technology" class="form-label">Technology</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select tech</option>
+                    @foreach ($technologies as $technology)
+                        <option value="{{ $technology->id }}">{{ $technology->label }}</option>
+                    @endforeach
+                    <option value="1">HTML 5</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                     name="description" rows="3">{{ $project->description }}</textarea>
