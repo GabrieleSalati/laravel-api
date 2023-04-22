@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    @include('layouts.partials.errors')
+
     <div>
         <form method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
             @csrf

@@ -39,6 +39,26 @@ class ProjectController extends Controller
      */
     public function store(Request $request, Project $project)
     {
+
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string',
+                'image' => 'nullable|url',
+                'link' => 'required|url'
+            ],
+            [
+                'title.required' => 'Title is mandatory!',
+                'title.string' => 'Title must be a string!',
+                'description.rquired' => 'Description is mandatory!',
+                'description.string' => 'Description must be a string!',
+                'image.url' => 'Insert a valid Url!',
+                'link.required' => 'Link is mandatory!',
+                'link.url' => 'Insert a valid Url!'
+            ]
+        );
+
+
         $project = new Project;
         $project->fill($request->all());
         $project->slug = Str::of($project->title)->slug('-');
@@ -79,6 +99,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string',
+                'image' => 'nullable|url',
+                'link' => 'required|url'
+            ],
+            [
+                'title.required' => 'Title is mandatory!',
+                'title.string' => 'Title must be a string!',
+                'description.rquired' => 'Description is mandatory!',
+                'description.string' => 'Description must be a string!',
+                'image.url' => 'Insert a valid Url!',
+                'link.required' => 'Link is mandatory!',
+                'link.url' => 'Insert a valid Url!'
+            ]
+        );
+
+
         $project->fill($request->all());
         $project->slug = Str::of($project->title)->slug('-');
 
