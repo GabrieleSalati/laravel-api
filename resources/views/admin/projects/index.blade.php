@@ -17,8 +17,8 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
+                <th scope="col">Technology</th>
                 <th scope="col">Image</th>
-                <th scope="col">Link</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,7 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
+                    <td>{{ $project->technology->label }}</td>
                     <td><img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="200px"></td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a>

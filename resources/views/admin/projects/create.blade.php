@@ -21,11 +21,12 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="technology" class="form-label">Technology</label>
-                <select class="form-select" aria-label="Default select example">
+                <label for="technology_id" class="form-label">Technology</label>
+                <select name="technology_id" id="technology_id" class="form-select" aria-label="Default select example">
                     <option selected>Select tech</option>
                     @foreach ($technologies as $technology)
-                        <option value="{{ $technology->id }}">{{ $technology->label }}</option>
+                        <option @if (old('techonology_id', $project->technology_id) == $technology->id)  @endif value="{{ $technology->id }}">
+                            {{ $technology->label }}</option>
                     @endforeach
                 </select>
             </div>

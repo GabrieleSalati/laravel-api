@@ -116,7 +116,8 @@ class ProjectController extends Controller
                 'title' => 'required|string',
                 'description' => 'required|string',
                 'image' => 'nullable|url',
-                'link' => 'required|url'
+                'link' => 'required|url',
+                'technology_id' => 'nullable|exists:technologies,id'
             ],
             [
                 'title.required' => 'Title is mandatory!',
@@ -125,7 +126,9 @@ class ProjectController extends Controller
                 'description.string' => 'Description must be a string!',
                 'image.url' => 'Insert a valid Url!',
                 'link.required' => 'Link is mandatory!',
-                'link.url' => 'Insert a valid Url!'
+                'link.url' => 'Insert a valid Url!',
+                'technology_id.exists' => 'This technology is not valid!'
+
             ]
         );
 
