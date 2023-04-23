@@ -30,7 +30,7 @@ class ProjectController extends Controller
     public function create(Project $project)
     {
         $project = new Project;
-        $technologies = Technology::all();
+        $technologies = Technology::orderBy('label')->get();
         return view('admin.projects.create', compact('project', 'technologies'));
     }
 
@@ -97,7 +97,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $technologies = Technology::all();
+        $technologies = Technology::orderBy('label')->get();
         return view('admin.projects.edit', compact('project', 'technologies'));
     }
 

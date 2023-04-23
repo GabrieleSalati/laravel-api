@@ -26,7 +26,13 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
-                    <td>{{ $project->technology->label }}</td>
+                    <td>
+                        @if ($project->technology)
+                            {{ $project->technology->label }}
+                        @else
+                            No technology
+                        @endif
+                    </td>
                     <td><img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="200px"></td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a>

@@ -5,7 +5,7 @@
 @section('content')
 
     <div>
-        <p>{{ $project->technology?->label }}</p>
+        <p>{{ $project->technology->label }}</p>
         <img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="400px">
         <p>{{ $project->description }}</p>
         <a href="{{ $project->link }}">{{ $project->link }}</a>
