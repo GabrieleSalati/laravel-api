@@ -33,6 +33,11 @@
                             No technology
                         @endif
                     </td>
+                    {{-- <td>
+                        @forelse($project->types as $type)
+                        {{ $type->label }}, @empty -
+                        @endforelse
+                    </td> --}}
                     <td><img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="200px"></td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a>
