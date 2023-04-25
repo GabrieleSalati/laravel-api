@@ -31,12 +31,12 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="type" class="form-label">Type</label>
+                <label for="types" class="form-label">Type</label>
                 @foreach ($types as $type)
-                    <label for="type" class="form-label">{{ $type->label }}</label><input type="checkbox"
-                        name="type" id="type">
+                    <input class="form-check-control" type="checkbox" name="types[]" id="types - {{ $type->id }}"
+                        value="{{ $type->id }}"><label for="types" class="form-label">{{ $type->label }}</label>
                 @endforeach
-                @error('type')
+                @error('types')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

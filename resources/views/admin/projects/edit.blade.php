@@ -33,6 +33,18 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="types" class="form-label">Type</label>
+                @foreach ($types as $type)
+                    <input class="form-check-control" type="checkbox" name="types[]" id="types - {{ $type->id }}"
+                        value="{{ $type->id }}"><label for="types" class="form-label">{{ $type->label }}</label>
+                @endforeach
+                @error('types')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                     name="description" rows="3">{{ $project->description }}</textarea>

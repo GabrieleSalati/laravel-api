@@ -9,6 +9,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
 {
@@ -50,7 +51,9 @@ class ProjectController extends Controller
                 'title' => 'required|string',
                 'description' => 'required|string',
                 'image' => 'nullable|image|:jpg,png,jpeg',
-                'link' => 'required|url'
+                'link' => 'required|url',
+                'technology_id' => 'nullable|exists:technologies,id',
+                'types' => 'nullable|exists:types,id'
             ],
             [
                 'title.required' => 'Title is mandatory!',
@@ -60,7 +63,9 @@ class ProjectController extends Controller
                 'image.image' => 'Insert a valid image!',
                 'image.mimes' => 'Accepted extensions are jpg,png,jpeg!',
                 'link.required' => 'Link is mandatory!',
-                'link.url' => 'Insert a valid Url!'
+                'link.url' => 'Insert a valid Url!',
+                'technology_id.exists' => 'This technology is not valid!',
+                'types.exists' => 'Invalid tags selected!'
             ]
         );
 
@@ -76,6 +81,8 @@ class ProjectController extends Controller
         $project->slug = Str::of($project->title)->slug('-');
 
         $project->save();
+
+        if (Arr::exists($data, "types")) $project->types()->attach($data["types"]);
 
         return to_route('admin.projects.show', $project)->with('message', 'Project added!');
     }
@@ -101,7 +108,8 @@ class ProjectController extends Controller
     {
         $technologies = Technology::orderBy('label')->get();
         $types = Type::orderBy('label')->get();
-        return view('admin.projects.create', compact('project', 'technologies', 'types'));
+        $projects_types = $project->types->pluck('id')->toArray();
+        return view('admin.projects.create', compact('project', 'technologies', 'types', 'projects_types'));
     }
 
     /**
@@ -135,11 +143,17 @@ class ProjectController extends Controller
             ]
         );
 
+        $data = $request->all();
+
 
         $project->fill($request->all());
         $project->slug = Str::of($project->title)->slug('-');
 
-        $project->save();
+        $project->update($data);
+        if (Arr::exists($data, "types")) $project->types()->sync($data["types"]);
+        else
+            $project->types()->detach();
+
 
         return to_route('admin.projects.show', $project)->with('message', 'Project updated!');
     }
