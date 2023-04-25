@@ -18,6 +18,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Technology</th>
+                <th scope="col">Type</th>
                 <th scope="col">Image</th>
             </tr>
         </thead>
@@ -33,11 +34,11 @@
                             No technology
                         @endif
                     </td>
-                    {{-- <td>
+                    <td>
                         @forelse($project->types as $type)
                         {{ $type->label }}, @empty -
                         @endforelse
-                    </td> --}}
+                    </td>
                     <td><img src="{{ asset('storage/' . $project->image) }}" alt="Picture" width="200px"></td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}"><i class="bi bi-hand-index"></i></a>
