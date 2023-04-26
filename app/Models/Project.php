@@ -20,4 +20,6 @@ class Project extends Model
     }
 
     protected $fillable = ['title', 'description', 'image', 'link', 'technology_id'];
+
+    protected $with = ['technology', 'types'];
 }
